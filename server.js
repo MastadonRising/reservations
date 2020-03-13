@@ -1,6 +1,6 @@
 var express = require("express");
 var path = require("path");
-const tables = [];
+const waitlist = [];
 const reservations=[];
 // Sets up the Express App
 // =============================================================
@@ -31,13 +31,26 @@ app.get("/", function(req, res) {
     )
   });
 
+  app.post("/api/tables", function (req, res) {
+    let reservation = req.body;
+    console.log(res);
+   const {customerName, phoneNumber, customerEmail, customerID} = reservation;
+   
+    console.log(customerName);
+    if (reservations.length < 5) {
+      reservations.push(reservation)
+      console.log("You have a reservation!!");
+      
+    }else{
+      waitlist.push(res.body)
+      console.log("We are really busy, you are on the waitlist");
+      res.json(reservation);
+    }
+  });
 
-
-
-
-
-
-
+app.get("/api/tables", function (req, res) {
+  res.json(reservations);
+})
 
 
 app.listen(PORT, function() {
