@@ -31,7 +31,29 @@ app.get("/", function(req, res) {
     )
   });
 
-
+  app.get("/api/reservations", function(req, res) {
+    return res.json(reservations);
+  });
+  
+  app.get("/api/tables", function(req, res) {
+    return res.json(reservations);
+  });
+  
+  app.post("/api/reservations", function(req, res) {
+  
+    var newReservation = req.body;
+  
+    console.log(newReservation);
+  
+    Reservations.push(newReservation);
+  
+    res.json(newReservation);
+  });
+  
+  app.post("/api/tables", function(req, res) {
+  
+    var 
+  })
 
 
 
